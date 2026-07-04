@@ -1,0 +1,49 @@
+// Office Device Monitor — Prisma schema
+//
+// PostgreSQL (Supabase) is used ONLY for authentication: users and refresh
+// sessions. All simulated office-monitoring data (devices, usage, alerts) lives
+// in NestJS process memory and resets when the backend restarts.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  VIEWER
+}
+
+/// Dashboard user (backend-managed auth). Passwords are stored only as hashes.
+model User {
+  id           String           @id @default(cuid())
+  email        String           @unique
+  passwordHash String
+  name         String
+  role         Role             @default(VIEWER)
+  active       Boolean          @default(true)
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  sessions     RefreshSession[]
+
+  @@index([email])
+}
+
+/// One row per issued refresh token (only the hash is stored). Rotated on
+/// refresh and revoked on logout.
+model RefreshSession {
+  id        String    @id @default(cuid())
+  userId    String
+  tokenHash String    @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+}
