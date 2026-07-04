@@ -2,11 +2,6 @@
 
 > _"Lights, Fans, Discord: The Boss's Big Idea"_ — IUT Robotics Society Hackathon (Preliminary Round)
 
-## Project Resources
-
-- **System Diagram:** [Google Drive](https://drive.google.com/file/d/1qPVH_9wjTWPMwGA5Z9x8fgEdsb8bzTNL/view?usp=sharing)
-- **Circuit Design:** [Wokwi Simulation](https://wokwi.com/projects/468569520832947201)
-- **Discord Bot / Server:** [Join Discord](https://discord.gg/5BHAa2k5m)
 
 Real-time monitoring of office lights and fans with a live web dashboard, a
 Discord bot, and one shared NestJS backend. All device data is **simulated** —
@@ -60,7 +55,7 @@ Simulated devices, usage and active alerts live in one shared in-memory
 .
 ├── backend/     ← NestJS API + Prisma + Socket.IO + Discord bot + JWT auth
 ├── dashboard/   ← Next.js App Router dashboard (auth + live data)
-├── docs/        ← system diagram + [Wokwi/Tinkercad schematic](https://wokwi.com/projects/468569520832947201)
+├── docs/        ← system diagram + Wokwi schematic
 └── PROJECT_BRIEF.md
 ```
 
@@ -150,4 +145,9 @@ Sign in with the seeded credentials, then explore the live dashboard.
   in-memory state; see the backend README.
 
 ---
+## Project Resources
 
+- **System Diagram:** [Google Drive](https://drive.google.com/file/d/1qPVH_9wjTWPMwGA5Z9x8fgEdsb8bzTNL/view?usp=sharing)
+- **Circuit Design:** [Wokwi Simulation](https://wokwi.com/projects/468569520832947201)
+- **Discord Bot / Server:** [Join Discord](https://discord.gg/5BHAa2k5m)
+---
