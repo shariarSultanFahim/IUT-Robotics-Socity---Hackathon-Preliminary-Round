@@ -53,7 +53,6 @@ src/app/
 └── (private)/                   # protected — redirects to /login until auth resolves
     ├── layout.tsx               # sidebar + topbar + mobile sheet
     ├── dashboard/page.tsx       # summary cards, office overview, power chart, alerts, activity
-    ├── history/page.tsx         # tabs: device / power / alert history
     └── profile/page.tsx         # account details + role + logout
 ```
 

@@ -6,10 +6,9 @@ exposes that shared state through a **REST API**, a **Socket.IO** gateway, and a
 only for authentication** (`User`, `RefreshSession`); device, usage and alert
 state live in backend memory and reset on restart.
 
-> **Device-count assumption:** the source problem statement is inconsistent
-> (it mentions both 5 and 6 devices per room). This implementation follows the
-> mathematically consistent configuration from `PROJECT_BRIEF.md`:
-> **3 rooms × (2 fans + 3 lights) = 15 devices** (6 fans, 9 lights). Not 18.
+> **Device-count:** the source problem statement 
+> (it mentions 5 devices per room). 
+> **3 rooms × (2 fans + 3 lights) = 15 devices**
 
 ---
 
@@ -135,12 +134,6 @@ npm run prisma:seed
 The database holds **only** `User` and `RefreshSession`. The seed upserts the two
 auth users from the `SEED_*` env vars; the 15 devices are seeded into memory on
 startup and are not part of the database.
-
-> ⚠️ The `20260704000000_monitoring_to_memory` migration **drops** the old
-> monitoring tables (`Device`, `DeviceStateHistory`, `PowerSnapshot`, `Alert`)
-> and their enums while preserving `User`/`RefreshSession`. It never runs
-> `migrate reset`. On a shared/production database, review the SQL and run
-> `npm run prisma:migrate:deploy` deliberately.
 
 ---
 

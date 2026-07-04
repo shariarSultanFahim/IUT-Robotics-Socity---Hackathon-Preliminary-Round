@@ -79,6 +79,7 @@ npm run prisma:migrate:deploy # applies auth migrations (drops old monitoring ta
 npm run prisma:seed           # seeds ADMIN/VIEWER users (idempotent). Devices are in-memory.
 npm run start:dev             # http://localhost:3001  (Swagger at /api/docs)
 ```
+For details instructions view `backend/README.md`
 
 **2. Frontend**
 
@@ -88,6 +89,7 @@ cp .env.example .env.local    # NEXT_PUBLIC_API_URL=http://localhost:3001
 npm install
 npm run dev                   # http://localhost:3000
 ```
+For details instructions view `dashboard/README.md`
 
 Sign in with the seeded credentials 
 - **mail:** admin@example.com 
