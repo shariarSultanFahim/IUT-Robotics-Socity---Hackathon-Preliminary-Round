@@ -72,7 +72,7 @@ Simulated devices, usage and active alerts live in one shared in-memory
 
 ```bash
 cd backend
-cp .env.example .env          # set DATABASE_URL + JWT secrets + SEED_* users
+cp .env.example .env          # set DATABASE_URL + JWT secrets + Discord bot secrect + SEED_* users
 npm install
 npm run prisma:generate
 npm run prisma:migrate:deploy # applies auth migrations (drops old monitoring tables — see note)
@@ -89,16 +89,11 @@ npm install
 npm run dev                   # http://localhost:3000
 ```
 
-Sign in with the seeded credentials, then explore the live dashboard.
+Sign in with the seeded credentials 
+- **mail:** admin@example.com 
+- **password:** admin123 
 
-> **Migration note (destructive, one-time).** The `20260704000000_monitoring_to_memory`
-> migration **drops** the obsolete monitoring tables (`Device`,
-> `DeviceStateHistory`, `PowerSnapshot`, `Alert`) and their enums. It preserves
-> `User`, `RefreshSession`, the `Role` enum and Prisma migration metadata. It
-> never runs `migrate reset` and never touches auth data. On a shared/production
-> database, review the SQL first and let the owner run
-> **`npm run prisma:migrate:deploy`** deliberately.
-
+then explore the live dashboard.
 ---
 
 ## Authentication & roles
@@ -123,10 +118,6 @@ Sign in with the seeded credentials, then explore the live dashboard.
 - **Socket.IO** requires the access token in the handshake
   (`socket.auth = { token }`); missing/invalid/expired tokens are rejected.
 
-> **Demo credentials warning:** the `SEED_*` values in `.env` are for local demos
-> only. **Never commit real passwords or secrets**, and use strong unique
-> credentials (and `AUTH_COOKIE_SECURE=true` behind HTTPS) in production.
-
 ---
 
 ## What the system provides
@@ -148,6 +139,12 @@ Sign in with the seeded credentials, then explore the live dashboard.
 ## Project Resources
 
 - **System Diagram:** [Google Drive](https://drive.google.com/file/d/1qPVH_9wjTWPMwGA5Z9x8fgEdsb8bzTNL/view?usp=sharing)
+
+  ![System Diagram](./docs/system-diagram.png)
+
 - **Circuit Design:** [Wokwi Simulation](https://wokwi.com/projects/468569520832947201)
+
+  ![ESP32 Wokwi Schematic](./docs/ESP32%20Wokwi%20Schematic.png)
+
 - **Discord Bot / Server:** [Join Discord](https://discord.gg/5BHAa2k5m)
 ---
